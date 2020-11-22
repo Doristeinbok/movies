@@ -1,9 +1,9 @@
 import './App.css';
-import Try from './api/Try'
+import Home from './pages/home/index.jsx'; 
 
 function App() {
   return (
-    <Try />
+    <Home />
   );
 }
 
