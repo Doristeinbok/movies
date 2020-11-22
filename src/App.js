@@ -4,7 +4,6 @@ import Try from './api/Try'
 function App() {
   return (
     <Try />
-
   );
 }
 
