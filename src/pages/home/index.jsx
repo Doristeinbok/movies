@@ -1,7 +1,7 @@
 import React ,{ useState, useEffect} from 'react';
 import { getTMDBconf, getTMDBmovies } from '../../api/TMDB';
 import { getOMDB } from '../../api/OMDB';
-import Card from '../../components/Card.js'; 
+import Card from '../card/index.jsx';
 function Home () {
     console.log("hello"); 
     // console.log(getTMDB); 
@@ -51,6 +51,8 @@ function Home () {
     console.log("base_url=",conf.base_url);    
     console.log("page=",page);                   
     console.log("movies=",movies);   
+    // console.log("movies.ganer=",movies.
+    // genres.name);
     return(
         <div>
         {/* <span>{`${movie.id}:  ${movie.title}`} </span>
