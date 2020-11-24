@@ -4,7 +4,7 @@ import { getTMDB } from '../../api/TMDB';
 function Home () {
     console.log("hello"); 
     // console.log(getTMDB); 
-    const [movies, setMovies] = useState();
+    const [movies, setMovies] = useState([]);
     
     //  let jsonMovies; 
     //  useEffect(() => {
@@ -24,32 +24,29 @@ function Home () {
     //     fetchData();
     //   }, [someId]); // Or [] if effect doesn't need props or state
 
-    useEffect(async () => { 
-        let jsonMovies;
+    useEffect(() => {         
+        async function fetchMovies () {
+            
         // if(!localStorage.getItem('movies')){                   //stop localstorage - gs 
-            jsonMovies = await getTMDB();
-                        
+            let response = await getTMDB();
+            let moviesPage = await response;              // added another await to handle promise
             // localStorage.setItem('movies', JSON.stringify(jsonMovies)); //stop localstorage - gs 
         // }else{           //stop localstorage - gs 
             // jsonMovies = JSON.parse(localStorage.getItem('movies')); //stop localstorage - gs 
-        // }    //stop localstorage - gs 
-        setTimeout(() => {
-            console.log("jsonMovies=", jsonMovies); 
-            setMovies(jsonMovies);
-        }, 1000);
+        // }    //stop localstorage - gs                 
+            setMovies(moviesPage.data.results);                    
+        }  
+        fetchMovies();        
     },[]);
-    
-    console.log("movies=",movies);
-    // console.log("movies.data=",movies.data);
-    // console.log("movies.results=",movies.data.results);
+           
     return(
-        <>
+        <div>
+        {  movies.map (movie => {
+            return (<p key={movie.id}> {`${movie.id}:  ${movie.title}  `}</p>)
+        })}             
+        {/* <button onClick={()=>showMovies()}> Show Movies</button> */}
+        </div>
         
-        {
-        movies.data.results.map (movie => {
-            return (<p>{`${movie.id}:  ${movie.title}  `}</p>)
-        })}               
-        </>
     )
 };
 
