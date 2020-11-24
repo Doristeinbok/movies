@@ -1,11 +1,16 @@
 import React ,{ useState, useEffect} from 'react';
-import { getTMDB } from '../../api/TMDB';
-
+import { getTMDBconf, getTMDBmovies } from '../../api/TMDB';
+import { getOMDB } from '../../api/OMDB';
+import Card from '../../components/Card.js'; 
 function Home () {
     console.log("hello"); 
     // console.log(getTMDB); 
+    const [conf, setConf] = useState({});
+    const [page, setPage] = useState({});
     const [movies, setMovies] = useState([]);
     
+    //${getOMDB(movie.title).Ratings}
+
     //  let jsonMovies; 
     //  useEffect(() => {
     //      async function fetchData() {
@@ -26,23 +31,34 @@ function Home () {
 
     useEffect(() => {         
         async function fetchMovies () {
+            let configuration = await getTMDBconf(); 
             
         // if(!localStorage.getItem('movies')){                   //stop localstorage - gs 
-            let response = await getTMDB();
+            let response = await getTMDBmovies();
             let moviesPage = await response;              // added another await to handle promise
             // localStorage.setItem('movies', JSON.stringify(jsonMovies)); //stop localstorage - gs 
         // }else{           //stop localstorage - gs 
             // jsonMovies = JSON.parse(localStorage.getItem('movies')); //stop localstorage - gs 
         // }    //stop localstorage - gs                 
-            setMovies(moviesPage.data.results);                    
+            setConf(configuration.data.images); 
+            setPage(moviesPage.data); 
+            setMovies(moviesPage.data.results);                              
         }  
         fetchMovies();        
     },[]);
-           
+    
+    console.log("conf=",conf);    
+    console.log("base_url=",conf.base_url);    
+    console.log("page=",page);                   
+    console.log("movies=",movies);   
     return(
         <div>
-        {  movies.map (movie => {
-            return (<p key={movie.id}> {`${movie.id}:  ${movie.title}  `}</p>)
+        {/* <span>{`${movie.id}:  ${movie.title}`} </span>
+            <img src={`${conf.base_url}/${conf.logo_sizes[1]}/${movie.poster_path}`} alt={movie.title}/> */}
+        {  movies.map (movie => {            
+            return (
+                <Card key={movie.id} conf={conf} movie={movie}/>             
+            )
         })}             
         {/* <button onClick={()=>showMovies()}> Show Movies</button> */}
         </div>
