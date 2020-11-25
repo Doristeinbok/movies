@@ -1,9 +1,10 @@
 
 import './card.css'
 
+
 function Card(props) {
     return (
-        <div>
+        <div className="maincard">
             <div className="cards">
                 <div className="cardz">
                     <img className="image" src={`${props.conf.base_url}/${props.conf.logo_sizes[3]}/${props.movie.poster_path}`} />
