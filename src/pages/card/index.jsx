@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import {useParams, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import './card.css'
 
@@ -6,8 +9,8 @@ function Card(props) {
         <div>
             <div className="cards">
                 <div className="cardz">
-                    <img className="image" src={`${props.conf.base_url}/${props.conf.logo_sizes[3]}/${props.movie.poster_path}`} />
-                    <p className="categoryz">Ganer</p>
+                    <img className="image" src={`${props.movie.base_url}/${props.movie.logo_sizes[3]}/${props.movie.poster_path}`} />
+                    <p className="categoryz">Genre</p>
                     <div className="card-contant">
                         <h2 className="title">{props.movie.title}</h2>
                         <p className="year">Released: {props.movie.release_date}</p>
@@ -18,6 +21,7 @@ function Card(props) {
                             </div>
                         </footer>
                     </div>
+                    {<Link to={`/movie/${props.movie.id}`}> Details</Link>}
                 </div>
             </div>
 
