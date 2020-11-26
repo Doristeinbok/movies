@@ -1,0 +1,52 @@
+/* head section */
+
+.head {
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+img {
+    width: 20em;
+    height: auto;
+}
+
+.head-details {
+    width: 30rem;
+}
+
+/* Actors section */
+
+.actors {
+    display: flex;
+    justify-content: center;
+}
+
+.oneActor {
+    height: 10rem;
+    width: auto;
+    margin: 10px;
+    transition: all 1s;
+}
+
+.oneActor:hover {
+    transform: scale(1.1);
+}
+
+/* Similar movies section */
+
+.similarMovies {
+    display: flex;
+    justify-content: space-around;
+}
+
+.movieSim {
+    height: 10rem;
+    width: auto;
+    margin: 10px;
+    transition: all 1s;
+}
+
+.movieSim:hover {
+    transform: scale(1.1);
+}
