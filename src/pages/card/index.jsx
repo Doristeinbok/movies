@@ -4,12 +4,15 @@ import {Link} from 'react-router-dom';
 
 import './card.css'
 
+
 function Card(props) {
     return (
-        <div>
+        <div className="maincard">
             <div className="cards">
                 <div className="cardz">
+                    <Link to={`/movie/${props.movie.id}`}>
                     <img className="image" src={`${props.movie.base_url}/${props.movie.logo_sizes[3]}/${props.movie.poster_path}`} />
+                    </Link>
                     <p className="categoryz">Genre</p>
                     <div className="card-contant">
                         <h2 className="title">{props.movie.title}</h2>
@@ -21,7 +24,6 @@ function Card(props) {
                             </div>
                         </footer>
                     </div>
-                    {<Link to={`/movie/${props.movie.id}`}> Details</Link>}
                 </div>
             </div>
 
