@@ -1,6 +1,17 @@
+
+
+
+li{
+    text-align: left;
+}
+ul{
+    list-style: none;
+}
+
+
 .actors-card {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     grid-auto-rows: (100px, auto);
     grid-gap: 1rem;
     text-align: center;
