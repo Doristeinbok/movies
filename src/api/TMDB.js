@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const key = '718ea0afa77356e0a5e2b18e7de231b7'; // gil 
+// const key = '718ea0afa77356e0a5e2b18e7de231b7'; // gil 
+const key = '490315f3d2a02854114c705838149f3a'; // Dori
 
 const getTMDBconf = async() => {
     const configuration = await axios.get(`https://api.themoviedb.org/3/configuration?api_key=${key}`);
@@ -8,7 +9,6 @@ const getTMDBconf = async() => {
 }
 
 const getTMDBmovies = async(queryType, pageNo=1) => {
-    //const key = '490315f3d2a02854114c705838149f3a'; Dori's 
     // single movie details 
     //  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${key}`);
     let response; 
@@ -24,8 +24,31 @@ const getTMDBmovies = async(queryType, pageNo=1) => {
     return response;
 };
 
+const actorDetails = async (actorName) => {
+    const actor = await axios.get(`https://api.themoviedb.org/3/search/person?api_key=${key}&language=en-US&page=1&include_adult=false&query=${actorName}`);
+    return actor;
+};
+
+const recomendations = async (movieId) => {
+    const recomendedMovies = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=1`);
+    return recomendedMovies;                  
+};
+
+const getOneMovie = async (movieId) => {
+    const movie = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&language=en-US`);
+    return movie;
+};
+
+const gerCredits = async (movieId) => {
+    const credits = await axios.get(`https://api.themoviedb.org/3/movie/682377/credits?api_key=${key}&language=en-US`);
+    return credits;
+}
+
 export {
     getTMDBconf, 
-    getTMDBmovies
-
+    getTMDBmovies,
+    actorDetails,
+    recomendations,
+    getOneMovie,
+    gerCredits
 };
