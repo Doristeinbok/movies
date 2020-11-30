@@ -3,6 +3,8 @@ import {useParams, useHistory, Link} from 'react-router-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'; 
 import Button from '@material-ui/core/Button';
 import RateReviewIcon from '@material-ui/icons/RateReview';
+import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import './style.css';
 import { actorDetails, recomendations, getOneMovie, getTMDBconf, gerCredits} from '../../api/TMDB';
@@ -34,8 +36,8 @@ function MovieDetails () {
         //get movie 
         const movieData = await getOneMovie(movieId);
         setMovie(movieData);
-        // console.log('movieData:');
-        // console.log(movieData);
+        console.log('movieData:');
+        console.log(movieData);
 
         //get rating from OMDB
         const omdb = await getOMDB(movieData.data.title);
@@ -60,8 +62,8 @@ function MovieDetails () {
 
         //show recomended movies
         const recomendedMoviesData = await recomendations(movieId);
-        console.log('recomendedMovies');
-        console.log(recomendedMoviesData);
+        // console.log('recomendedMovies');
+        // console.log(recomendedMoviesData);
         setRecomendedMovies(recomendedMoviesData);
         // console.log(recomendedMovies);
         // const recomendedMoviesUrl = recomendedMoviesData.data.results.map(movie => movie.backdrop_path);
@@ -80,18 +82,33 @@ function MovieDetails () {
             <div className="head">
                 {
                     movie &&
-                    <div className="head-details"> 
+                    <div className="detailsPage head-details"> 
                         <h1>{movie.data.title}</h1>
                         <h3 className="plot-summery">{movie.data.overview}</h3>
-                        {rating && !rating.data.Error && rating.data.Ratings.map((rating, index) => <h3 key={index}>{rating.Source} : {rating.Value}</h3>)}
-                        <Button variant="contained" color="primery" startIcon={<RateReviewIcon />}>
+                        <h2>Ratings</h2>
+                        {rating && !rating.data.Error && rating.data.Ratings.map((rating, index) => 
+                        {
+                            return (
+                                <h3 key={index}>
+                                    <div><ThumbUpOutlinedIcon /> {rating.Source} : {rating.Value}</div>
+                                </h3>
+                            )
+                        }
+                        )
+                        }
+                        {
+                            rating && rating.data.Error && 
+                            <h3><i>No ratings</i></h3>
+
+                        }
+                        <Button className="detailsPage review-button" variant="contained" color="primery" startIcon={<RateReviewIcon />}>
                             Add your own review
                         </Button>
                     </div>
                 }
                 {
                     confImg && 
-                    <img src={`${confImg.data.images.base_url}/${confImg.data.images.profile_sizes[2]}/${movie.data.poster_path}`} alt='movie' />   
+                    <img className='detailsPage mainImg' src={`${confImg.data.images.base_url}/${confImg.data.images.profile_sizes[2]}/${movie.data.poster_path}`} alt={movie.data.title} />   
                 }
                 {/* <button onClick={goHome} >Back</button> */}
             </div>
@@ -107,15 +124,18 @@ function MovieDetails () {
             !loading &&
             <div className="afetrLoading">
                 <h1>Actors:</h1>
-                <div className="actors">
+                <div className="detaisPage actors">
                     {actor && 
                         actor.data.cast.map((actorUrl, index) => 
                         {return(
                             actorUrl.profile_path && 
+                            <Tooltip title={actorUrl.name} placement="top">
                             <img key={index} className="oneActor" 
                             src={`${confImg.data.images.base_url}/${confImg.data.images.profile_sizes[2]}/${actorUrl.profile_path}`} alt={actorUrl.name} 
                             />
+                            </Tooltip>
                             )
+
                         }).slice(0,5)
                     }
                 </div>

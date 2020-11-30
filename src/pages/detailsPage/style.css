@@ -6,19 +6,29 @@
     justify-content: space-around;
 }
 
-img {
-    width: 20em;
+.detailsPage.mainImg {
+    width: 25em;
     height: auto;
 }
 
-.head-details {
-    width: 30rem;
+.detailsPage.head-details {
+    width: 40rem;
+}
+
+.plot-summery {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.detailsPage.review-button {
+    margin-top: 30px;
 }
 
 /* Actors section */
 
-.actors {
+.detaisPage.actors {
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
