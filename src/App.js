@@ -15,12 +15,12 @@ function App() {
             <MoivieNav />
           </div>
           <Route path={'/'} exact={true}>
-            <div className="homePageWraper">
+            <div className="homePageWrapper">
               <Home />
             </div>
           </Route >
           <Route path={'/actors'}>
-            <div className="actorsWraper">
+            <div className="actorsWrapper">
               <People />
             </div>
           </Route>
