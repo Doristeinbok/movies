@@ -6,8 +6,6 @@ import './card.css'
 
 
 function Card(props) {
-    console.log(`movies obj: ${props.movie}`);
-    console.log(`runtime: ${props.movie[0].OMDB.data.Runtime}`);
     return (
         <div className="main-cards px-2">
             <div className="movie-card">
