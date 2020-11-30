@@ -23,9 +23,10 @@ img {
 }
 
 .oneActor {
-    height: 10rem;
+    height: 20rem;
     width: auto;
-    margin: 10px;
+    margin: 20px;
+    cursor: pointer;
     transition: all 1s;
 }
 
@@ -44,6 +45,7 @@ img {
     height: 10rem;
     width: auto;
     margin: 10px;
+    cursor: pointer;
     transition: all 1s;
 }
 
