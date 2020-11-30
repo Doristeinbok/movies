@@ -52,3 +52,8 @@ img {
 .movieSim:hover {
     transform: scale(1.1);
 }
+
+.loading {
+    margin-left: auto;
+    margin-right: auto;
+}
