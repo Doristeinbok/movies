@@ -40,7 +40,7 @@ const getOneMovie = async (movieId) => {
 };
 
 const gerCredits = async (movieId) => {
-    const credits = await axios.get(`https://api.themoviedb.org/3/movie/682377/credits?api_key=${key}&language=en-US`);
+    const credits = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}&language=en-US`);
     return credits;
 }
 
