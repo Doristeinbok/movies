@@ -16,12 +16,12 @@ function People() {
     const imgAddress='https://image.tmdb.org/t/p/w500'
     return (
 
-        <div className="actors-card">
+        <div className="actors-card px-2">
             {
                 mostPopular && mostPopular.map(item =>
                     <div className="actors">
-                        <div className="actor-img">
-                            <img src={`${imgAddress}${item.profile_path}`} />
+                        <div className="img-wrapper">
+                            <img className="actor-img" src={`${imgAddress}${item.profile_path}`} />
                         </div>
                         <h2 className="actor-name">{item.name}</h2>
                         <ul>
@@ -35,8 +35,6 @@ function People() {
                         </footer>
                     </div>
                 )
-    // https://image.tmdb.org/t/p/w500/3JTEc2tGUact9c0WktvpeJ9pajn.jpg
-
             }
         </div>
     )
