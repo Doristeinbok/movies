@@ -42,14 +42,15 @@ h3 {
 .categories {
   font-size: .75rem;
   text-transform: uppercase;
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   color: #fff;
   background: #e74c3c;
   padding: 10px 15px;
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
+  max-width: 150px;
+  text-overflow: hidden;
 }
 
 .foot {

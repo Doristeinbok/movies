@@ -170,9 +170,9 @@ function Home() {
                 <Route path={["/home", "/"]} exact={true}>
 
                     <div className="filter">
-                        <div >
-                            <label htmlFor="sorting">which movie list:</label>
-                            <select defaultValue="discover"
+                        <div className="movie-list mt-3">
+                            <label className="selectMovie" htmlFor="sorting">which movie list:</label>
+                            <select className="dropDown" defaultValue="discover"
                                 onChange={showWhichMovieList}
                                 name="whichMovieList"
                                 id="whichMovieList">
@@ -202,33 +202,35 @@ function Home() {
                                 onChange={sortAlphabetically}
                                 check />
                             <label class="form-check-label" for="exampleRadios2">
-                                movie title ascending by abc
+                                Ascending by abc
   </label>
                         </div>
 
 
                         <div className="pageNavigation-section">
-                            <span>{`Page ${movies[0].page} of ${movies[0].total_pages}`}</span>
-                            {(movies[0].page > 1) &&
-                                <button
-                                    onClick={() =>
-                                        fetchMovies(movies[0].queryType, movies[0].page - 1)}>
-                                    Back</button>}
-                            {(movies[0].page < movies[0].total_pages) &&
-                                <button
-                                    onClick={() =>
-                                        fetchMovies(movies[0].queryType, movies[0].page + 1)}>
-                                    Next</button>}
-                            {(movies[0].page > 1) &&
-                                <button
-                                    onClick={() =>
-                                        fetchMovies(movies[0].queryType, 1)}>
-                                    First</button>}
-                            {(movies[0].page < movies[0].total_pages) &&
-                                <button
-                                    onClick={() =>
-                                        fetchMovies(movies[0].queryType, movies[0].total_pages)}>
-                                    Last</button>}
+                            <span className="displayPageNum">{`Page ${movies[0].page} of ${movies[0].total_pages}`}</span>
+                            <div className="btn-wrapper">
+                                {(movies[0].page > 1) &&
+                                    <button className="navBtn mr-3"
+                                        onClick={() =>
+                                            fetchMovies(movies[0].queryType, movies[0].page - 1)}>
+                                        Back</button>}
+                                {(movies[0].page < movies[0].total_pages) &&
+                                    <button className="navBtn mr-3"
+                                        onClick={() =>
+                                            fetchMovies(movies[0].queryType, movies[0].page + 1)}>
+                                        Next</button>}
+                                {(movies[0].page > 1) &&
+                                    <button className="navBtn mr-3"
+                                        onClick={() =>
+                                            fetchMovies(movies[0].queryType, 1)}>
+                                        First</button>}
+                                {(movies[0].page < movies[0].total_pages) &&
+                                    <button className="navBtn mr-3"
+                                        onClick={() =>
+                                            fetchMovies(movies[0].queryType, movies[0].total_pages)}>
+                                        Last</button>}
+                            </div>
                             {/* {movies[0].page===1 ?<p>Hello</p>:<p>World</p>}  */}
                         </div>
                     </div>
