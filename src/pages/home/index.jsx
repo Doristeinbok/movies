@@ -8,6 +8,10 @@ import { getTMDBconf, getTMDBmovies } from '../../api/TMDB';
 import { getOMDB } from '../../api/OMDB';
 import Card from '../card/index.jsx';
 import MovieDetails from '../detailsPage/index.jsx';
+import MovieNav from '../../components/Navbar/index.jsx';
+import People from '../../pages/actors/index.jsx';
+
+
 function Home() {
 
     // const [conf, setConf] = useState({});
@@ -40,6 +44,18 @@ function Home() {
     ];
 
     const [movies, setMovies] = useState(emptyMovieArray);
+
+    const onSearch = ({ target: { value: text } }) => {
+        if (!text) {
+            setMovies(movies);
+            return
+        }
+        const lower = text.toLowerCase();
+        const filtered = movies.filter((movie) =>
+            movie.title.toLowerCase().includes(lower)
+        )
+        setMovies(filtered)
+    }
 
     const showWhichMovieList = (e) => {
         // if (e.target.value === 'top_rated') {
@@ -121,6 +137,11 @@ function Home() {
     // genres.name);
     return (
         <BrowserRouter>
+
+            <div className="navi">
+                <MovieNav onSearch={onSearch} />
+            </div>
+
             <Switch>
                 <Route path={["/home", "/"]} exact={true}>
                     <div >
@@ -168,6 +189,11 @@ function Home() {
                             )
                         })}
                         {/* <button onClick={()=>showMovies()}> Show Movies</button> */}
+                    </div>
+                </Route>
+                <Route path={'/actors'}>
+                    <div className="actorsWrapper">
+                        <People />
                     </div>
                 </Route>
                 <Route path="/movie/:movieId">
