@@ -6,6 +6,7 @@ import './card.css'
 
 
 function Card(props) {
+    
     return (
         <div className="main-cards px-2">
             <div className="movie-card">

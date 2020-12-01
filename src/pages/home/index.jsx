@@ -44,6 +44,7 @@ function Home() {
     ];
 
     const [movies, setMovies] = useState(emptyMovieArray);
+    let search = '';
 
     const onSearch = ({ target: { value: text } }) => {
         if (!text) {
@@ -67,14 +68,14 @@ function Home() {
     // {movies.release_date} shuold be convert to date so that sortByDate function work properly
     const sortByDate=()=>{
         const newest=[...movies];
-        // const changeDate=movies.release_date.split('-')
-        // const toNum=changeDate.join('')
-        // const toNumber=Number(toNum)
+        const changeDate=movies.release_date.split('-')
+        const toNum=changeDate.join('')
+        const toNumber=Number(toNum)
         newest.sort((a,b)=>b.release_date-a.release_date)
         setMovies(newest);
     };
 
-    
+
 
     const showWhichMovieList = (e) => {
         // if (e.target.value === 'top_rated') {
