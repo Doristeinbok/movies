@@ -56,13 +56,13 @@ h2 {
   border-top: 2px solid #e7e7e7;
   margin: .5rem 0 0;
   min-height: 30px;
-  font-size: .5rem;
+  font-size: 0.9rem;
 }
 
 .meta {
   margin-top: 1.5rem;
 }
 
-.views {
-  margin-left: 5.5rem;
+.year{
+  font-size: 0.9rem;
 }

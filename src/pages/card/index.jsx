@@ -18,15 +18,19 @@ function Card(props) {
                     <p className="year">Released: {props.movie.release_date}</p>
                     <footer className="foot">
                         <div className="meta">
-                            {props.movie.OMDB &&
-                                <span className="duration"><i className="fa fa-clock-o"></i>Duration: {props.movie.OMDB.data.Runtime}</span>
-                            }
-                            <span className="views"><i className="fa fa-comments"></i><a href="#">Viewers Rate: {props.movie.popularity}</a></span>
+                            <div className="duration">
+                                {props.movie.OMDB &&
+                                    <span className="duration"><i className="fa fa-clock-o"></i>Duration: {props.movie.OMDB.data.Runtime}</span>
+                                }
+                            </div>
+                            <div className='viewers'>
+                                <span className="views"><i className="fa fa-comments"></i><a href="#">Viewers Rate: {props.movie.popularity}</a></span>
+                            </div>
                         </div>
                     </footer>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
