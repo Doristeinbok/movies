@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert';
 
 import './style.css';
 import { actorDetails, recomendations, getOneMovie, getTMDBconf, gerCredits} from '../../api/TMDB';
@@ -26,6 +29,19 @@ function MovieDetails () {
     const [rating, getRating] = useState();
     const [recomendedMovies, setRecomendedMovies] = useState();
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false); //alert for Review
+
+    const handleClick = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
 
     useEffect(async () => {
         window.scrollTo(0, 0);
@@ -101,9 +117,16 @@ function MovieDetails () {
                             <h3><i>No ratings</i></h3>
 
                         }
-                        <Button className="detailsPage review-button" variant="contained" color="primery" startIcon={<RateReviewIcon />}>
+                        <Button className="detailsPage review-button" variant="contained" color="primery" startIcon={<RateReviewIcon />}
+                            onClick={handleClick}
+                        >
                             Add your own review
                         </Button>
+                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} >
+                            <Alert variant="filled" severity="error" >
+                                In Construction
+                            </Alert>
+                        </Snackbar>
                     </div>
                 }
                 {
@@ -129,10 +152,10 @@ function MovieDetails () {
                         actor.data.cast.map((actorUrl, index) => 
                         {return(
                             actorUrl.profile_path && 
-                            <Tooltip title={actorUrl.name} placement="top">
-                            <img key={index} className="oneActor" 
-                            src={`${confImg.data.images.base_url}/${confImg.data.images.profile_sizes[2]}/${actorUrl.profile_path}`} alt={actorUrl.name} 
-                            />
+                            <Tooltip key={index} title={actorUrl.name} placement="top">
+                                <img key={index} className="oneActor" 
+                                src={`${confImg.data.images.base_url}/${confImg.data.images.profile_sizes[2]}/${actorUrl.profile_path}`} alt={actorUrl.name} 
+                                />
                             </Tooltip>
                             )
 
