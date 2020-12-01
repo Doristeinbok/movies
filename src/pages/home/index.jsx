@@ -66,16 +66,20 @@ function Home() {
 
 
     // {movies.release_date} shuold be convert to date so that sortByDate function work properly
-    const sortByDate=()=>{
-        const newest=[...movies];
-        const changeDate=movies.release_date.split('-')
-        const toNum=changeDate.join('')
-        const toNumber=Number(toNum)
-        newest.sort((a,b)=>b.release_date-a.release_date)
-        setMovies(newest);
+    // const sortByDate=()=>{
+    //     const newest=[...movies];
+    //     const changeDate=movies.release_date.split('-')
+    //     const toNum=changeDate.join('')
+    //     const toNumber=Number(toNum)
+    //     newest.sort((a,b)=>b.release_date-a.release_date)
+    //     setMovies(newest);
+    // };
+
+    const sortAlphabetically = () => {
+        const alfaBet = [...movies];
+        alfaBet.sort((a, b) => (a.title > b.title) ? 1 : -1);
+        setMovies(alfaBet);
     };
-
-
 
     const showWhichMovieList = (e) => {
         // if (e.target.value === 'top_rated') {
@@ -164,58 +168,71 @@ function Home() {
 
             <Switch>
                 <Route path={["/home", "/"]} exact={true}>
-                    <div >
-                        <label htmlFor="sorting">which movie list:</label>
-                        <select defaultValue="discover"
-                            onChange={showWhichMovieList}
-                            name="whichMovieList"
-                            id="whichMovieList">
-                            <option value="discover">Browse </option>
-                            <option value="top_rated">Top Rated</option>
-                        </select>
+
+                    <div className="filter">
+                        <div >
+                            <label htmlFor="sorting">which movie list:</label>
+                            <select defaultValue="discover"
+                                onChange={showWhichMovieList}
+                                name="whichMovieList"
+                                id="whichMovieList">
+                                <option value="discover">Browse </option>
+                                <option value="top_rated">Top Rated</option>
+                            </select>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                                onChange={sortByViewers}
+                            />
+                            <label class="form-check-label" for="exampleRadios1">
+                                Most popular Movies
+  </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
+                            //   onChange={sortByDate}
+                            />
+                            <label class="form-check-label" for="exampleRadios2">
+                                Newest Movies
+  </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
+                                onChange={sortAlphabetically}
+                                check />
+                            <label class="form-check-label" for="exampleRadios2">
+                                movie title ascending by abc
+  </label>
+                        </div>
+
+
+                        <div className="pageNavigation-section">
+                            <span>{`Page ${movies[0].page} of ${movies[0].total_pages}`}</span>
+                            {(movies[0].page > 1) &&
+                                <button
+                                    onClick={() =>
+                                        fetchMovies(movies[0].queryType, movies[0].page - 1)}>
+                                    Back</button>}
+                            {(movies[0].page < movies[0].total_pages) &&
+                                <button
+                                    onClick={() =>
+                                        fetchMovies(movies[0].queryType, movies[0].page + 1)}>
+                                    Next</button>}
+                            {(movies[0].page > 1) &&
+                                <button
+                                    onClick={() =>
+                                        fetchMovies(movies[0].queryType, 1)}>
+                                    First</button>}
+                            {(movies[0].page < movies[0].total_pages) &&
+                                <button
+                                    onClick={() =>
+                                        fetchMovies(movies[0].queryType, movies[0].total_pages)}>
+                                    Last</button>}
+                            {/* {movies[0].page===1 ?<p>Hello</p>:<p>World</p>}  */}
+                        </div>
                     </div>
 
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-  onChange={sortByViewers}
-  />
-  <label class="form-check-label" for="exampleRadios1">
-    Most popular Movies
-  </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" 
-  onChange={sortByDate}
-  />
-  <label class="form-check-label" for="exampleRadios2">
-    Newest Movies
-  </label>
-</div>
-
-                    <div>
-                        <span>{`Page ${movies[0].page} of ${movies[0].total_pages}`}</span>
-                        {(movies[0].page > 1) &&
-                            <button
-                                onClick={() =>
-                                    fetchMovies(movies[0].queryType, movies[0].page - 1)}>
-                                Back</button>}
-                        {(movies[0].page < movies[0].total_pages) &&
-                            <button
-                                onClick={() =>
-                                    fetchMovies(movies[0].queryType, movies[0].page + 1)}>
-                                Next</button>}
-                        {(movies[0].page > 1) &&
-                            <button
-                                onClick={() =>
-                                    fetchMovies(movies[0].queryType, 1)}>
-                                First</button>}
-                        {(movies[0].page < movies[0].total_pages) &&
-                            <button
-                                onClick={() =>
-                                    fetchMovies(movies[0].queryType, movies[0].total_pages)}>
-                                Last</button>}
-                        {/* {movies[0].page===1 ?<p>Hello</p>:<p>World</p>}  */}
-                    </div>
                     <div className="cards-grid" >
                         {/* <span>{`${movie.id}:  ${movie.title}`} </span>
                             <img src={`${conf.base_url}/${conf.logo_sizes[1]}/${movie.poster_path}`} alt={movie.title}/> */}
