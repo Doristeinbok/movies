@@ -30,7 +30,7 @@ function MovieNav(props) {
                     defaultValue={props.search}
                     onChange={props.onSearch}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
