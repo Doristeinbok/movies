@@ -57,6 +57,25 @@ function Home() {
         setMovies(filtered)
     }
 
+    const sortByViewers = () => {
+        const populars = [...movies];
+        populars.sort((a, b) => b.popularity - a.popularity);
+        setMovies(populars);
+    };
+
+
+    // {movies.release_date} shuold be convert to date so that sortByDate function work properly
+    const sortByDate=()=>{
+        const newest=[...movies];
+        // const changeDate=movies.release_date.split('-')
+        // const toNum=changeDate.join('')
+        // const toNumber=Number(toNum)
+        newest.sort((a,b)=>b.release_date-a.release_date)
+        setMovies(newest);
+    };
+
+    
+
     const showWhichMovieList = (e) => {
         // if (e.target.value === 'top_rated') {
         fetchMovies(e.target.value);
@@ -154,8 +173,25 @@ function Home() {
                             <option value="top_rated">Top Rated</option>
                         </select>
                     </div>
-                    <div>
 
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  onChange={sortByViewers}
+  />
+  <label class="form-check-label" for="exampleRadios1">
+    Most popular Movies
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" 
+  onChange={sortByDate}
+  />
+  <label class="form-check-label" for="exampleRadios2">
+    Newest Movies
+  </label>
+</div>
+
+                    <div>
                         <span>{`Page ${movies[0].page} of ${movies[0].total_pages}`}</span>
                         {(movies[0].page > 1) &&
                             <button
