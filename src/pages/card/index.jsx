@@ -14,7 +14,7 @@ function Card(props) {
                 </Link>
                 <p className="categories">Genre</p>
                 <div className="card-contant">
-                    <h2 className="title">{props.movie.title}</h2>
+                    <h3 className="title">{props.movie.title}</h3>
                     <p className="year">Released: {props.movie.release_date}</p>
                     <footer className="foot">
                         <div className="meta">

@@ -3,10 +3,10 @@ a {
   color: orange;
 }
 
-h2 {
+h3 {
   color: #000;
   margin: 2rem 0 .5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
 }
