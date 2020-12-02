@@ -16,6 +16,7 @@ import Alert from '@material-ui/lab/Alert';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import HomeIcon from '@material-ui/icons/Home';
+import TheatersIcon from '@material-ui/icons/Theaters';
 //fonts
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
@@ -25,9 +26,9 @@ function MovieDetails () {
     let {movieId}=useParams(); 
     const history = useHistory();
     
-    const goHome = () => {        
-        history.push("/home");
-    }
+    // const goHome = () => {        
+    //     history.push("/home");
+    // }
 
     const [movie, setMovie] = useState();
     const [confImg, setConfImg] = useState();
@@ -40,7 +41,7 @@ function MovieDetails () {
     
     useEffect(async () => {
         window.scrollTo(0, 0);
-
+        
         //add flag for loading sign
         setLoading(true);
 
@@ -170,12 +171,12 @@ function MovieDetails () {
                                 )
                             })
                         }
+                        <h2>Do I look familiar to you?</h2>
                         <ul>
-                            <h2>do i look familiar to you?</h2>
                             {
                                 moviesForActor && 
                                 moviesForActor.data.cast.slice(0,5).map(movie => 
-                                <li>{`I played ${movie.character} in `}
+                                <li><TheatersIcon color="primary"/> {` I played ${movie.character} in `}
                                     <Link to={`/movie/${movie.id}`} onClick={() => removeActorMovies()}>{movie.original_title}</Link>
                                 </li>)
                             }
