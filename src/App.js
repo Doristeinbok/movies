@@ -3,28 +3,24 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Home from './pages/home/index.jsx';
-// import People from './pages/actors/index.jsx'
-// import MoivieNav from './components/Navbar/index.jsx'
+import People from './pages/actors/index.jsx';
+import MoivieNav from './components/Navbar/index.jsx';
+import DetailsPage from './pages/detailsPage/index.jsx';
 
 function App() {
   return (
     <BrowserRouter>
+      <MoivieNav />
       <Switch>
-        <div>
-          {/* <div className="navi">
-            <MoivieNav />
-          </div> */}
-          <Route path={'/'} exact={true}>
-            <div className="homePageWrapper">
+          <Route path="/" exact={true}>
               <Home />
-            </div>
           </Route >
-          {/* <Route path={'/actors'}>
-            <div className="actorsWrapper">
+          <Route path="/actors">
               <People />
-            </div>
-          </Route> */}
-        </div>
+          </Route>
+          <Route path="/movie/:movieId">
+              <DetailsPage />
+          </Route>
       </Switch>
     </BrowserRouter>
   );
