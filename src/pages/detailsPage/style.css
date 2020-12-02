@@ -6,6 +6,11 @@
     justify-content: space-around;
 }
 
+.button.backToMain {
+    position: fixed;
+    right: 25px;
+    top: 80px;
+}
 .detailsPage.mainImg {
     height: 35em;
     width: auto;
@@ -33,6 +38,10 @@
 
 /* Actors section */
 
+.headline.Lead-Actors {
+    margin-left: 20px;
+}
+
 .detaisPage.actors {
     display: flex;
     flex-direction: row;
@@ -58,6 +67,10 @@
 .similarMovies {
     display: flex;
     justify-content: space-around;
+}
+
+.similarMovies-header {
+    margin-left: 20px;
 }
 
 .movieSim {

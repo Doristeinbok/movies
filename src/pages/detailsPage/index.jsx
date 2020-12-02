@@ -15,6 +15,7 @@ import Alert from '@material-ui/lab/Alert';
 //icons
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import HomeIcon from '@material-ui/icons/Home';
 //fonts
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
@@ -91,11 +92,6 @@ function MovieDetails () {
     
     return (
         <>
-            <div className="buttons-group">
-                <Button href="/" variant="contained" color="secondary">
-                    back to main page
-                </Button>
-            </div>
             <div className="head">
                 {
                     movie &&
@@ -144,7 +140,6 @@ function MovieDetails () {
                 }
                 {/* <button onClick={goHome} >Back</button> */}
             </div>
-            
 
         <hr />
 
@@ -155,7 +150,11 @@ function MovieDetails () {
         {
             !loading &&
             <div className="afetrLoading">
-                <h1>Lead Actors:</h1>
+                <div className="headline Lead-Actors">
+                    <Typography variant="h3">
+                        Lead Actors:
+                    </Typography>
+                </div>
                 <div className="detaisPage actors">
                     <div>
                         {actor && 
@@ -186,7 +185,11 @@ function MovieDetails () {
 
                 <hr />
 
-                <h1>You may like also...</h1>
+                    <div className="similarMovies-header">
+                        <Typography variant="h4">
+                            You may like also...
+                        </Typography>
+                    </div>
                 <div className="similarMovies">
                     {recomendedMovies && recomendedMovies.data.results.slice(0,10).map((movieUrl, index) => 
                     {return(
@@ -202,7 +205,13 @@ function MovieDetails () {
                     )}
                     )}
                 </div>
+                <div className="button backToMain">
+                <Button href="/" variant="contained" color="secondary">
+                    <HomeIcon />
+                </Button>
             </div>
+            </div>
+            
         }
         </>
     )
