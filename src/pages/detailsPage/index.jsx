@@ -25,10 +25,6 @@ function MovieDetails () {
 
     let {movieId}=useParams(); 
     const history = useHistory();
-    
-    // const goHome = () => {        
-    //     history.push("/home");
-    // }
 
     const [movie, setMovie] = useState();
     const [confImg, setConfImg] = useState();
@@ -171,8 +167,8 @@ function MovieDetails () {
                                 )
                             })
                         }
-                        <h2>Do I look familiar to you?</h2>
                         <ul>
+                        <h2>Do I look familiar to you?</h2>
                             {
                                 moviesForActor && 
                                 moviesForActor.data.cast.slice(0,5).map(movie => 

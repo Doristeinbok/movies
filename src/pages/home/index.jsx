@@ -7,9 +7,6 @@ import './home.css';
 import { getTMDBconf, getTMDBmovies } from '../../api/TMDB';
 import { getOMDB } from '../../api/OMDB';
 import Card from '../card/index.jsx';
-import MovieDetails from '../detailsPage/index.jsx';
-import MovieNav from '../../components/Navbar/index.jsx';
-import People from '../../pages/actors/index.jsx';
 
 
 function Home() {
@@ -157,15 +154,7 @@ function Home() {
     // console.log("movies.ganer=",movies.
     // genres.name);
     return (
-        <BrowserRouter>
-
-            <div className="navi">
-                <MovieNav onSearch={onSearch} />
-            </div>
-
-            <Switch>
-                <Route path={["/home", "/"]} exact={true}>
-
+            <>
                     <div className="filter">
                         <div className="movie-list mt-3">
                             <label className="selectMovie" htmlFor="sorting">which movie list:</label>
@@ -184,7 +173,7 @@ function Home() {
                             />
                             <label class="form-check-label" for="exampleRadios1">
                                 Most popular Movies
-  </label>
+                            </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
@@ -192,7 +181,7 @@ function Home() {
                             />
                             <label class="form-check-label" for="exampleRadios2">
                                 Newest Movies
-  </label>
+                            </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
@@ -200,7 +189,7 @@ function Home() {
                                 check />
                             <label class="form-check-label" for="exampleRadios2">
                                 Ascending by abc
-  </label>
+                            </label>
                         </div>
 
 
@@ -243,18 +232,7 @@ function Home() {
                         })}
                         {/* <button onClick={()=>showMovies()}> Show Movies</button> */}
                     </div>
-                </Route>
-                <Route path={'/actors'}>
-                    <div className="actorsWrapper">
-                        <People />
-                    </div>
-                </Route>
-                <Route path="/movie/:movieId">
-                    <MovieDetails movies={movies} />
-                </Route>
-
-            </Switch>
-        </BrowserRouter>
+            </>
     )
 };
 
