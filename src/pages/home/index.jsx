@@ -66,14 +66,11 @@ function Home() {
 
 
     // {movies.release_date} shuold be convert to date so that sortByDate function work properly
-    // const sortByDate=()=>{
-    //     const newest=[...movies];
-    //     const changeDate=movies.release_date.split('-')
-    //     const toNum=changeDate.join('')
-    //     const toNumber=Number(toNum)
-    //     newest.sort((a,b)=>b.release_date-a.release_date)
-    //     setMovies(newest);
-    // };
+    const sortByDate=()=>{
+        const newest=[...movies];
+        newest.sort((a,b)=>new Date(b.release_date)-(new Date(a.release_date)))
+        setMovies(newest);
+    };
 
     const sortAlphabetically = () => {
         const alfaBet = [...movies];
@@ -191,7 +188,7 @@ function Home() {
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
-                            //   onChange={sortByDate}
+                              onChange={sortByDate}
                             />
                             <label class="form-check-label" for="exampleRadios2">
                                 Newest Movies
