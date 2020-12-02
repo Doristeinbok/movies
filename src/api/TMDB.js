@@ -39,10 +39,18 @@ const getOneMovie = async (movieId) => {
     return movie;
 };
 
-const gerCredits = async (movieId) => {
+const getCredits = async (movieId) => {
     const credits = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}&language=en-US`);
     return credits;
 }
+
+const getMoviesForActor = async (actorId) => {
+    const movies = await axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${key}&language=en-US`);
+    return movies;
+}
+
+
+
 
 export {
     getTMDBconf, 
@@ -50,5 +58,6 @@ export {
     actorDetails,
     recomendations,
     getOneMovie,
-    gerCredits
+    getCredits,
+    getMoviesForActor
 };
