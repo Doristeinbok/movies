@@ -14,6 +14,7 @@ ul{
 }
 
 .actors-card {
+   
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: (100px, auto);
@@ -31,3 +32,19 @@ ul{
     position: relative;
     color: #5d5e5e;
 }
+
+.actors-btn{
+    margin-top:15px;
+    padding:7px 20px;
+    border: none;
+    border-radius:20px;
+    background-color: #34495e;
+    color:#ffffff;
+}
+
+.actors-btn:hover{
+    background-color: #ffffff;
+    border: 1px solid #34495e;
+    color:#34495e;
+}
+
