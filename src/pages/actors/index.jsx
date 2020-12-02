@@ -26,7 +26,6 @@ function People() {
                         <h2 className="actor-name">{item.name}</h2>
                         <ul>
                             {item.known_for.map(movie => {
-                                console.log(`${movie.title}`);
                                 return <li>{movie.title}</li>
                             })}
                         </ul>
